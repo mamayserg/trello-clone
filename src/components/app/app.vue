@@ -2,11 +2,13 @@
 <template src="./app.html"></template>
 
 <script>
-  import SearchPanel from '../search-panel/search-panel';
-  import DataPanel from '../data-panel/data-panel';
+import Cards from '../Cards'
+import Header from '../Header'
+import Columns from '../Columns'
 
   export default {
     name: 'App',
-    components: { SearchPanel, DataPanel }
+    components: { Cards , Header , Columns},
+
   }
 </script>
