@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './components/app/app';
-import { createStore } from './store/store';
+import { store } from './store/store';
 
 Vue.config.productionTip = false
 Vue.use(VueMaterial.default)
@@ -8,7 +8,7 @@ Vue.use(VueMaterial.default)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+    store,
   components: { App },
-  store: createStore(),
   template: '<App/>'
 })

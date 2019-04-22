@@ -76,6 +76,7 @@
             removeTodo(todo) {
                 this.todos.splice(this.todos.indexOf(todo), 1);
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos));
+                console.log("daun",this.$store.state.data);
             },
             editTodo(todo) {
                 this.editedTodo = todo;
