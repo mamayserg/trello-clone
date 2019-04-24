@@ -2,14 +2,14 @@
 <template>
     <div>
 
-    <div class="card">
+
         <md-card>
             <md-card-header>
                 <md-avatar>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR57mJ_WCiEU7QOmtRARPFJ1i0Wj20k9mGvd_R7NDV0vPVrpg8duA" alt="Avatar">
                 </md-avatar>
 
-                <div class="md-title" >Title goes hered ыыыыыыыыыыы ыыыыыыыыы ыыыыыыыыыыыыыы</div>
+                <div class="md-title" >Titleheredыыыыыыыыыыыы  ыыыыыыыыыыыыыыыыыыыыыы</div>
                 <div class="md-subhead">Subtitle here</div>
 
                 <md-menu id="icon" md-size="big" md-direction="bottom-end">
@@ -50,7 +50,6 @@
         <hr class="e-separator e-separator-fullwidth">
     </div>
 
-    </div>
 </template>
 
 <script>
@@ -66,28 +65,25 @@ return {
 
 
 #icon{
-    position: absolute;
-    top: 10px;
-    right: 5px;
-}
+     position: absolute;
+     top: 10px;
+     right: 5px;
+ }
 .md-title{
     overflow-x:hidden;
+    padding-right: 5px;
 
 }
 
 md-card {
     width: 320px;
     height: 5px;
-    margin: 4px;
+    margin: 10px;
     display: inline-block;
     vertical-align: top;
     overflow-x: hidden;
 }
 
-.card{
-    width:18% ;
-    height: 30px;
 
-}
 
 </style>
