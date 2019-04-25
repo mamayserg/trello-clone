@@ -9,8 +9,10 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR57mJ_WCiEU7QOmtRARPFJ1i0Wj20k9mGvd_R7NDV0vPVrpg8duA" alt="Avatar">
                 </md-avatar>
 
-                <div class="md-title" >Titleheredыыыыыыыыыыыы  ыыыыыыыыыыыыыыыыыыыыыы</div>
-                <div class="md-subhead">Subtitle here</div>
+                <div class="md-title" >{{todo.name}}</div>
+                <div class="md-subhead">{{todo.date}}</div>
+                <div class="md-subhead" v-if="todo.dateEdit!=undefined">edited :{{todo.dateEdit}}</div>
+
 
                 <md-menu id="icon" md-size="big" md-direction="bottom-end">
                     <md-button class="md-icon-button" md-menu-trigger>
@@ -18,12 +20,12 @@
                     </md-button>
 
                     <md-menu-content>
-                        <md-menu-item @click="">
+                        <md-menu-item @click="removeCard(todo)">
                             <span>Удатиь</span>
                             <md-icon>delete</md-icon>
                         </md-menu-item>
 
-                        <md-menu-item @click="">
+                        <md-menu-item @click="cardModal= true">
                             <span>Редактировать </span>
                             <md-icon>edit</md-icon>
                         </md-menu-item>
@@ -42,12 +44,33 @@
 
                 <md-card-expand-content>
                     <md-card-content>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.
+                       {{myCard.description}}
                     </md-card-content>
                 </md-card-expand-content>
             </md-card-expand>
         </md-card>
-        <hr class="e-separator e-separator-fullwidth">
+        <div>
+            <md-dialog :md-active.sync="cardModal">
+                <md-dialog-title>CARD</md-dialog-title>
+
+                <md-field>
+                    <label>Card name</label>
+                    <md-input v-model="todo.name" maxlength="50"></md-input>
+                </md-field>
+                <md-field>
+                    <label>What needs to be done?</label>
+                    <md-textarea v-model="todo.description" maxlength="400"></md-textarea>
+                </md-field>
+                <md-field>
+                    <label>Only images</label>
+                    <md-file v-model="todo.image" accept="image/*" />
+                </md-field>
+                <md-dialog-actions>
+                    <md-button class="md-primary" @click="cardModal= false">Close</md-button>
+                    <md-button class="md-primary" @click="editCard">Save</md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
     </div>
 
 </template>
@@ -55,10 +78,52 @@
 <script>
 
 export default {
+    props:['todo'],
 data() {
 return {
+    card:{},
+    cardModal: false,
+    name:"",
+    description: "",
+    image: "",
+    feedback:"",
+    label: ""
 }
 },
+    methods: {
+        editCard() {
+            // this.name = this.todo.name;
+            // this.description=this.todo.description;
+            // this.image=this.todo.image;
+
+
+            // var editCard = this.$store.state.todos.find((card) => {
+            //     return card.id === this.todo.id;
+            // });
+            //  editCard.name = this.todo.name;
+            //  editCard.image = this.todo.image;
+            //  editCard.description = this.todo.description;
+            //  editCard.feedback = this.todo.feedback;
+            //  editCard.label =this.todo.label
+            // var now = new Date()
+            // editCard.dateEdit = now.toLocaleString();
+            // console.log( this.editCard,"EDIR");
+            // //  this.$store.commit('updateCard',this.card)
+            //
+            // this.cardModal = false;
+
+        },
+        removeCard(card){
+            this.$store.commit('deleteCard',card)
+            console.log(card);
+        }
+    },
+    computed:{
+        myCard(){
+            return this.todo
+        }
+    }
+
 }
 </script>
 <style >
@@ -78,7 +143,7 @@ return {
 md-card {
     width: 320px;
     height: 5px;
-    margin: 10px;
+    margin: 4px;
     display: inline-block;
     vertical-align: top;
     overflow-x: hidden;
